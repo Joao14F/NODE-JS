@@ -1,26 +1,26 @@
 {
-  "name": "nodejs",
+  "name": "NODE-JS",
   "version": "1.0.0",
   "description": "aula 1",
-  "main": "index.js",
+  "main": "index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dfsdavidfsferreiradfs/node-js.git"
+    "url": "git+https://github.com/Joao14F/NODE-JS.git"
   },
-  "author": "davi fs",
+  "author": "João Francisco",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dfsdavidfsferreiradfs/node-js/issues"
+    "url": "https://github.com/Joao14F/NODE-JS/issues"
   },
-  "homepage": "https://github.com/dfsdavidfsferreiradfs/node-js#readme",
+  "homepage": "https://github.com/Joao14F/NODE-JS#readme",
   "keywords": [
     "palavras",
     "chaves"
   ],
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "NODE-JSmon": "^2.0.22"
   }
 }
