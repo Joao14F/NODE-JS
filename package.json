@@ -1,21 +1,25 @@
 {
-  "name": "node-js",
+  "name": "nodejs",
   "version": "1.0.0",
-  "description": "Meu primeira aplicativo web com nodejs",
+  "description": "aula 1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Joao14F/NODE-JS.git"
+    "url": "git+https://github.com/dfsdavidfsferreiradfs/node-js.git"
   },
-  "author": "João Francisco Bratti",
+  "author": "davi fs",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Joao14F/NODE-JS/issues"
+    "url": "https://github.com/dfsdavidfsferreiradfs/node-js/issues"
   },
-  "homepage": "https://github.com/Joao14F/NODE-JS#readme",
+  "homepage": "https://github.com/dfsdavidfsferreiradfs/node-js#readme",
+  "keywords": [
+    "palavras",
+    "chaves"
+  ],
   "devDependencies": {
     "nodemon": "^2.0.22"
   }
