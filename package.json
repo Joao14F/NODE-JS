@@ -1,0 +1,27 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "meu primeiro aplicativo web com nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuCrispim/node.js.git"
+  },
+  "author": "Gustavo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuCrispim/node.js/issues"
+  },
+  "homepage": "https://github.com/GuCrispim/node.js#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "formidable": "^2.1.1",
+    "nodemailer": "^6.9.1",
+    "upper-case": "^2.0.2"
+  }
+}
