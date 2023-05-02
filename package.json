@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "formidable": "^2.1.1",
+    "mysql": "^2.18.1",
     "nodemailer": "^6.9.1",
     "upper-case": "^2.0.2"
   }
