@@ -3,14 +3,14 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "aluno01"
+  password: "",
+  database: "mydb"
 });
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
-  con.query("CREATE DATABASE banco", function (err, result) {
+  con.query("SELECT * FROM customers", function (err, result, fields) {
     if (err) throw err;
-    console.log("Banco criado");
+    console.log(result);
   });
 });

@@ -3,14 +3,15 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "aluno01",
-  database: "banco"
+  password: "",
+  database: "mydb"
 });
 
 con.connect(function(err) {
   if (err) throw err;
-  con.query("SELECT * FROM clientes WHERE address LIKE 'S%'", function (err, result) {
+  var sql = "DROP TABLE customers";
+  con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log(result);
+    console.log("Table deleted");
   });
 });

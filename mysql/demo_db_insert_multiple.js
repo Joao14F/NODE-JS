@@ -3,14 +3,14 @@ var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "aluno01",
-  database: "banco"
+  password: "",
+  database: "mydb"
 });
 
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  var sql = "INSERT INTO clientes (name, address) VALUES ?";
+  var sql = "INSERT INTO customers (name, address) VALUES ?";
   var values = [
     ['John', 'Highway 71'],
     ['Peter', 'Lowstreet 4'],
