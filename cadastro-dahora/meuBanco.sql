@@ -27,13 +27,12 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `clientes`
 --
 
-CREATE TABLE `clientes` (
+create TABLE `clientes` (
   `nome` varchar(255) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL,
   `Altura` varchar(30) DEFAULT NULL,
   `Idade` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Extraindo dados da tabela `clientes`
 --
@@ -49,6 +48,13 @@ INSERT INTO `clientes` (`nome`, `endereco`, `Altura`, `Idade`) VALUES
 ('teste6', 'teste6', NULL, '');
 COMMIT;
 
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+create table `produtos` (
+`id` varchar (30) not null,
+`descricao` varchar (30) not null,
+`quantidade` varchar (30) not null,
+`valor` varchar (30) not null)
