@@ -20,6 +20,10 @@ app.get("/cadastro", (req, res) => {
   res.sendFile(__dirname + "/cadastro.html");
 });
 
+app.get("/cadastroProduto", (req, res) => {
+  res.sendFile(__dirname + "/cadastroProduto.html");
+});
+
 app.post("/cadastro", (req, res) => {
   const { nome, endereco, altura, idade } = req.body;
   if (!nome || !endereco || !altura || !idade) {
@@ -27,7 +31,7 @@ app.post("/cadastro", (req, res) => {
     return;
   }
 
-  const cliente = { nome, endereco, altura, idade  };
+  const cliente = { nome, endereco, altura, idade };
   connection.query("INSERT INTO clientes SET ?", cliente, (err, result) => {
     if (err) throw err;
     console.log(`Cliente ${nome} cadastrado com sucesso!`);
@@ -35,17 +39,17 @@ app.post("/cadastro", (req, res) => {
   });
 });
 
-app.post("/cadastro", (req, res) => {
+app.post("/cadastroProduto", (req, res) => {
   const { id, descricao, quantidade, valor } = req.body;
   if (!id || !descricao || !quantidade || !valor) {
     res.status(400).send("Id, descrição, quantidade e valor são campos obrigatórios.");
     return;
   }
 
-  const produto = { id, descricao, quantidade, valor  };
+  const produto = { id, descricao, quantidade, valor };
   connection.query("INSERT INTO produtos SET ?", produto, (err, result) => {
     if (err) throw err;
-    console.log(`Cliente ${id} cadastrado com sucesso!`);
+    console.log(`Produto ${id} cadastrado com sucesso!`);
     res.redirect("/");
   });
 });
@@ -56,51 +60,52 @@ app.get('/listagem', (req, res) => {
   // Consulta no banco de dados
   connection.query(`SELECT * FROM clientes`, (error, results, fields) => {
     if (error) throw error;
-    
+
     // Exibição dos resultados
     let html = `
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Clientes</title>
-        </head>
-        <body>
-          <h1>Clientes encontrados</h1>
-          <table>
-            <tr>
-              <th>Nome</th>
-              <th>endereço</th>
-              <th>altura</th>
-              <th>idade</th>
-            </tr>
-    `;
-    
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Clientes</title>
+          </head>
+          <body>
+            <h1>Clientes encontrados</h1>
+            <table>
+              <tr>
+                <th>Nome</th>
+                <th>endereço</th>
+                <th>altura</th>
+                <th>idade</th>
+              </tr>
+      `;
+
     results.forEach((cliente) => {
       html += `
-        <tr>
-          <td>${cliente.nome}</td>
-          <td>${cliente.endereco}</td>
-          <td>${cliente.altura}</td>
-          <td>${cliente.idade}</td>
-        </tr>
-      `;
+          <tr>
+            <td>${cliente.nome}</td>
+            <td>${cliente.endereco}</td>
+            <td>${cliente.altura}</td>
+            <td>${cliente.idade}</td>
+          </tr>
+        `;
     });
-    
+
     html += `
-          </table>
-          <a href="/">Voltar</a>
-        </body>
-      </html>
-    `;
-    
+            </table>
+            <a href="/">Voltar</a>
+          </body>
+        </html>
+      `;
+
     res.send(html);
   });
 });
 
- // Consulta no banco de dados
- connection.query(`SELECT * FROM produtos`, (error, results, fields) => {
+app.get('/listagem', (req, res) => {
+// Consulta no banco de dados
+connection.query(`SELECT * FROM produtos`, (error, results, fields) => {
   if (error) throw error;
-  
+
   // Exibição dos resultados
   let html = `
     <!DOCTYPE html>
@@ -118,7 +123,7 @@ app.get('/listagem', (req, res) => {
             <th>Valor</th>
           </tr>
   `;
-  
+
   results.forEach((produto) => {
     html += `
       <tr>
@@ -129,15 +134,16 @@ app.get('/listagem', (req, res) => {
       </tr>
     `;
   });
-  
+
   html += `
         </table>
         <a href="/">Voltar</a>
       </body>
     </html>
   `;
-  
+
   res.send(html);
+});
 });
 
 // Rota para exibir o formulário de consulta
@@ -185,19 +191,13 @@ app.post('/consulta', (req, res) => {
   const { nome, endereco, altura, idade } = req.body;
   //const endereco = req.body.endereco;
   //const endereco = req.body.altura;
-  //const endereco = req.body.idade;
-    //const id = req.body.id;
-    const { id, descricao, quantidade, valor } = req.body;
-    //const descricao = req.body.descricao;
-    //const descricao = req.body.quantidade;
-    //const descricao = req.body.valor;
-    
-  
+  //const endereco = req.body.idade;    
+
   // Consulta no banco de dados
   connection.query(`SELECT * FROM clientes WHERE nome LIKE '%${nome}%'`, (error, results, fields) => {
     if (error) throw error;
-      
-    
+
+
     // Exibição dos resultados
     let html = `
       <!DOCTYPE html>
@@ -215,7 +215,7 @@ app.post('/consulta', (req, res) => {
               <th>idade</th>
             </tr>
     `;
-    
+
     results.forEach((cliente) => {
       html += `
         <tr>
@@ -226,23 +226,31 @@ app.post('/consulta', (req, res) => {
         </tr>
       `;
     });
-    
+
     html += `
           </table>
           <a href="/">Voltar</a>
         </body>
       </html>
     `;
-    
+
     res.send(html);
   });
 });
 
-connection.query(`SELECT * FROM produtos WHERE id LIKE '%${id}%'`, (error, results, fields) => {
-  if (error) throw error;
-  
-  // Exibição dos resultados
-  let html = `
+app.post('/consulta', (req, res) => {
+
+  //const id = req.body.id;
+  const { id, descricao, quantidade, valor } = req.body;
+  //const descricao = req.body.descricao;
+  //const descricao = req.body.quantidade;
+  //const descricao = req.body.valor;
+
+  connection.query(`SELECT * FROM produtos WHERE id LIKE '%${id}%'`, (error, results, fields) => {
+    if (error) throw error;
+
+    // Exibição dos resultados
+    let html = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -258,9 +266,9 @@ connection.query(`SELECT * FROM produtos WHERE id LIKE '%${id}%'`, (error, resul
             <th>Valor</th>
           </tr>
   `;
-  
-  results.forEach((produto) => {
-    html += `
+
+    results.forEach((produto) => {
+      html += `
       <tr>
         <td>${produto.id}</td>
         <td>${produto.descricao}</td>
@@ -268,24 +276,24 @@ connection.query(`SELECT * FROM produtos WHERE id LIKE '%${id}%'`, (error, resul
         <td>${produto.valor}</td>
       </tr>
     `;
-  });
-  
-  html += `
+    });
+
+    html += `
         </table>
         <a href="/">Voltar</a>
       </body>
     </html>
   `;
-  
-  res.send(html);
+
+    res.send(html);
+  });
 });
 
+  connection.connect((err) => {
+    if (err) throw err;
+    console.log("Conectado ao banco de dados MySQL!");
+  });
 
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("Conectado ao banco de dados MySQL!");
-});
-
-app.listen(3000, () => {
-  console.log("Servidor iniciado na porta 3000");
-});
+  app.listen(3000, () => {
+    console.log("Servidor iniciado na porta 3000");
+  });
