@@ -18,50 +18,50 @@ const connection = mysql.createConnection({
 connection.connect();
 
 // Rota para processar a consulta
-app.post('/clientes', (req, res) => {
+app.post('/produtos', (req, res) => {
 
-  // Consulta no banco de dados
-  connection.query(`SELECT * FROM clientes`, (error, results, fields) => {
+// Consulta no banco de dados
+connection.query(`SELECT * FROM produtos`, (error, results, fields) => {
     if (error) throw error;
-    
+  
     // Exibição dos resultados
     let html = `
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Clientes</title>
+          <title>Produtos</title>
         </head>
         <body>
-          <h1>Clientes encontrados</h1>
+          <h1>Produtos encontrados</h1>
           <table>
             <tr>
-              <th>Nome</th>
-              <th>endereço</th>
-              <th>altura</th>
-              <th>idade</th>
+              <th>Id</th>
+              <th>Deiscrição</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
             </tr>
     `;
-    
-    results.forEach((cliente) => {
+  
+    results.forEach((produto) => {
       html += `
         <tr>
-          <td>${cliente.nome}</td>
-          <td>${cliente.endereco}</td>
-          <td>${cliente.altura}</td>
-          <td>${cliente.idade}</td>
+          <td>${produto.id}</td>
+          <td>${produto.descricao}</td>
+          <td>${produto.quantidade}</td>
+          <td>${produto.valor}</td>
         </tr>
       `;
     });
-    
+  
     html += `
           </table>
         </body>
       </html>
     `;
-    
+  
     res.send(html);
   });
-});
+  });
 
 // Inicia o servidor
 app.listen(port, () => {

@@ -102,49 +102,49 @@ app.get('/listagem', (req, res) => {
 });
 
 app.get('/listagem', (req, res) => {
-// Consulta no banco de dados
-connection.query(`SELECT * FROM produtos`, (error, results, fields) => {
-  if (error) throw error;
-
-  // Exibição dos resultados
-  let html = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Clientes</title>
-      </head>
-      <body>
-        <h1>Clientes encontrados</h1>
-        <table>
-          <tr>
-            <th>Id</th>
-            <th>Deiscrção</th>
-            <th>Quantidade</th>
-            <th>Valor</th>
-          </tr>
-  `;
-
-  results.forEach((produto) => {
-    html += `
-      <tr>
-        <td>${produto.id}</td>
-        <td>${produto.descricao}</td>
-        <td>${produto.quantidade}</td>
-        <td>${produto.valor}</td>
-      </tr>
+  // Consulta no banco de dados
+  connection.query(`SELECT * FROM produtos`, (error, results, fields) => {
+    if (error) throw error;
+  
+    // Exibição dos resultados
+    let html = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Produtos</title>
+        </head>
+        <body>
+          <h1>Produtos encontrados</h1>
+          <table>
+            <tr>
+              <th>Id</th>
+              <th>Deiscrição</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
+            </tr>
     `;
+  
+    results.forEach((produto) => {
+      html += `
+        <tr>
+          <td>${produto.id}</td>
+          <td>${produto.descricao}</td>
+          <td>${produto.quantidade}</td>
+          <td>${produto.valor}</td>
+        </tr>
+      `;
+    });
+  
+    html += `
+          </table>
+          <a href="/">Voltar</a>
+        </body>
+      </html>
+    `;
+  
+    res.send(html);
   });
-
-  html += `
-        </table>
-        <a href="/">Voltar</a>
-      </body>
-    </html>
-  `;
-
-  res.send(html);
-});
-});
+  });
 
 // Rota para exibir o formulário de consulta
 app.get('/consulta', (req, res) => {
