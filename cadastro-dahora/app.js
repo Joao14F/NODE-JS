@@ -101,7 +101,7 @@ app.get('/listagem', (req, res) => {
   });
 });
 
-app.get('/listagem', (req, res) => {
+app.get('/listagemProduto', (req, res) => {
   // Consulta no banco de dados
   connection.query(`SELECT * FROM produtos`, (error, results, fields) => {
     if (error) throw error;
@@ -166,7 +166,7 @@ app.get('/consulta', (req, res) => {
   `);
 });
 
-app.get('/consulta', (req, res) => {
+app.get('/consultaProduto', (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html>
@@ -238,7 +238,7 @@ app.post('/consulta', (req, res) => {
   });
 });
 
-app.post('/consulta', (req, res) => {
+app.post('/consultaProduto', (req, res) => {
 
   //const id = req.body.id;
   const { id, descricao, quantidade, valor } = req.body;
