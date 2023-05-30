@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  password: 'aluno01',
+  password: '',
   database: 'meuBanco'
 });
 
@@ -23,18 +23,18 @@ app.get('/consultaProduto', (req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Consulta de produtos</title>
+        <title>Consulta de produto</title>
       </head>
       <body>
-        <h1>Consulta de produtos</h1>
+        <h1>Consulta de produto</h1>
         <form method="POST" action="/produtos">
-          <label for="id">Id:</label>
+          <label for="id">id:</label>
           <input type="text" id="id" name="id"><br><br>
-          <label for="descricao">Descrição:</label>
+          <label for="descricao">descricao:</label>
           <input type="text" id="descricao" name="descricao"><br><br>
-          <label for="quantidade">Quantidade:</label>
-          <input type="text" id="quantidade:" name="quantidade"><br><br>
-          <label for="valor">Valor:</label>
+          <label for="quantidade">quantidade:</label>
+          <input type="text" id="quantidade" name="quantidade"><br><br>
+          <label for="valor">valor:</label>
           <input type="text" id="valor" name="valor"><br><br>
           <button type="submit">Consultar</button>
         </form>
@@ -47,7 +47,7 @@ app.get('/consultaProduto', (req, res) => {
 app.post('/produtos', (req, res) => {
   //const id = req.body.id;
   const { id, descricao, quantidade, valor } = req.body;
-  //const descricao = req.body.descricao;
+  //const endereco = req.body.endereco;
   
   // Consulta no banco de dados
   connection.query(`SELECT * FROM produtos WHERE id LIKE '%${id}%'`, (error, results, fields) => {
@@ -57,27 +57,25 @@ app.post('/produtos', (req, res) => {
     let html = `
       <!DOCTYPE html>
       <html>
-        <head>
-          <title>Produto</title>
         </head>
         <body>
-          <h1>Produto encontrado</h1>
+          <h1>produto encontrados</h1>
           <table>
             <tr>
-                <th>Id</th>
-                <th>Descrição</th>
-                <th>Quantidade</th>
-                <th>Valor</th>
+              <th>id</th>
+              <th>descricao</th>
+              <th>quantidade</th>
+              <th>valor</th>
             </tr>
     `;
     
-    results.forEach((cliente) => {
+    results.forEach((produtos) => {
       html += `
         <tr>
-            <td>${produto.id}</td>
-            <td>${produto.descricao}</td>
-            <td>${produto.quantidade}</td>
-            <td>${produto.valor}</td>
+          <td>${produtos.id}</td>
+          <td>${produtos.descricao}</td>
+          <td>${produtos.quantidade}</td>
+          <td>${produtos.valor}</td>
         </tr>
       `;
     });

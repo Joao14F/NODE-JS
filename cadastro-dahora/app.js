@@ -67,6 +67,20 @@ app.get('/listagem', (req, res) => {
         <html>
           <head>
             <title>Clientes</title>
+            <style>
+          table {
+            border-collapse: collapse;
+          }
+          
+          tr {
+            border: 1px solid black;
+          }
+          
+          th, td {
+            border: 1px solid black;
+            padding: 8px; 
+          }
+          </style>
           </head>
           <body>
             <h1>Clientes encontrados</h1>
@@ -112,6 +126,20 @@ app.get('/listagemProduto', (req, res) => {
       <html>
         <head>
           <title>Produtos</title>
+          <style>
+          table {
+            border-collapse: collapse;
+          }
+          
+          tr {
+            border: 1px solid black;
+          }
+          
+          th, td {
+            border: 1px solid black;
+            padding: 8px; 
+          }
+          </style>
         </head>
         <body>
           <h1>Produtos encontrados</h1>
@@ -175,7 +203,7 @@ app.get('/consultaProduto', (req, res) => {
       </head>
       <body>
         <h1>Consulta de produtos</h1>
-        <form method="POST" action="/consulta">
+        <form method="POST" action="/consultaProduto">
           <label for="id">Id:</label>
           <input type="text" id="id" name="id"><br><br>
           <button type="submit">Consultar</button>
@@ -204,6 +232,20 @@ app.post('/consulta', (req, res) => {
       <html>
         <head>
           <title>Clientes</title>
+          <style>
+          table {
+            border-collapse: collapse;
+          }
+          
+          tr {
+            border: 1px solid black;
+          }
+          
+          th, td {
+            border: 1px solid black;
+            padding: 8px; 
+          }
+          </style>
         </head>
         <body>
           <h1>Clientes encontrados</h1>
@@ -254,10 +296,24 @@ app.post('/consultaProduto', (req, res) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>Clientes</title>
+        <title>Produto</title>
+        <style>
+          table {
+            border-collapse: collapse;
+          }
+          
+          tr {
+            border: 1px solid black;
+          }
+          
+          th, td {
+            border: 1px solid black;
+            padding: 8px; 
+          }
+          </style>
       </head>
       <body>
-        <h1>Clientes encontrados</h1>
+        <h1>Produtos encontrados</h1>
         <table>
           <tr>
             <th>Id</th>
